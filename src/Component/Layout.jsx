@@ -25,7 +25,7 @@ const Layout = () => {
                     <ul className="menu w-full grow">
                         {/* List item */}
                         <li>
-                            <Link to='/Dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                            <Link to='/Dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Home page">
                                 {/* Home icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                                 <span className="is-drawer-close:hidden">Homepage</span>
@@ -35,20 +35,27 @@ const Layout = () => {
                         {/* List item */}
 
                         <li>
-                            <>
-                            <Link to='/addStudent' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                {/* foam */}
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <polyline points="14 2 14 8 20 8" />
-                                    <line x1="8" y1="13" x2="16" y2="13" />
-                                    <line x1="8" y1="17" x2="16" y2="17" />
-                                    <polyline points="10 9 9 9 8 9" />
-                                </svg>
-                                <span className="is-drawer-close:hidden"> Addmission Foam</span>
-                            </Link>
-                            </>
-
+                                <Link to='/addStudent' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Addmission foam">
+                                    {/* foam */}
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <line x1="8" y1="13" x2="16" y2="13" />
+                                        <line x1="8" y1="17" x2="16" y2="17" />
+                                        <polyline points="10 9 9 9 8 9" />
+                                    </svg>
+                                    <span className="is-drawer-close:hidden"> Addmission Foam</span>
+                                </Link>
+                        </li>
+                        <li>
+                                <Link to='/teacherfoam' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Teacher foam">
+                                    {/* foam */}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="2" fill="none" stroke="currentColor" className="size-4 inline-block">
+                                        <circle cx="12" cy="7" r="3"></circle>
+                                        <path d="M5 20c0-4 3-6 7-6s7 2 7 6"></path>
+                                    </svg>
+                                    <span className="is-drawer-close:hidden">Teacher Foam</span>
+                                </Link>
                         </li>
                         <li>
                             <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">

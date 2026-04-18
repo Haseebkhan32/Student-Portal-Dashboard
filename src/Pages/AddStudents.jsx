@@ -7,63 +7,74 @@ const AddStudents = () => {
       <form action="" className="grid grid-cols-4 gap-4 px-4">
         <div className="" >
           <label htmlFor="" className="font-semibold">First Name</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input required  className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Last Name</label>
-          <input className="bg-white p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input required className="bg-white p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Date of Birth</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="date" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="date" />
         </div>
-          <div className="" >
+        <div className="" >
           <label htmlFor="" className="font-semibold">Gender</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Male/Female" type="text" />
         </div>
         <div>
-          <label htmlFor="phone" className="font-semibold"  >Contact no</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="+92-" type="tel" id="phone" name="phone" />
+          <label htmlFor="phone" className="font-semibold"  >Contact No:</label>
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="+92-" type="tel" id="phone" name="phone" />
         </div>
-      
+
         <div className="" >
           <label htmlFor="" className="font-semibold">CINC No:</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="number" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="41303-1586080-9" type="number" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Email Address:</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="email" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Religion</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Islam" type="text" />
+        </div>
+
+        <div>
+          <label className="font-semibold">Course Name:</label>
+
+          <select className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1">
+            <option value="">Select Course</option>
+            <option value="web">Web Development</option>
+            <option value="app">App Development</option>
+            <option value="graphic">Graphic Design</option>
+            <option value="ai">AI / Machine Learning</option>
+          </select>
+        </div>
+        <div>
+          <label className="font-semibold">Campus/Branch</label>
+
+          <select className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1">
+            <option value="">Select Campus</option>
+            <option value="auto">Auto Ban</option>
+            <option value="sadar">Sadar</option>
+            <option value="sarfarz">Sarfarz Colony</option>
+          </select>
         </div>
 
         <div className="" >
-          <label htmlFor="" className="font-semibold">Course Name:</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
-        </div>
-        <div className="" >
-          <label htmlFor="" className="font-semibold">Campus/Branch</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
-        </div>
-      
-        <div className="" >
           <label htmlFor="" className="font-semibold">Current Address:</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="house.no-7" type="text" />
+          <input required  className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="house.no-7" type="text" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Postal Code:</label>
-          <input className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="71000" type="number" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="71000" type="number" />
         </div>
 
-
-
-
+      <button  className="active:scale-95 transition-all hover:bg-blue-600   text-white text-lg w-1/3 my-3 py-2 rounded bg-blue-500">Sumbit</button>
       </form>
-      <button className="active:scale-95 transition-all hover:bg-blue-600 mx-4 text-white text-lg w-1/10 my-3 py-2 rounded bg-blue-500">Sumbit</button>
 
     </div>
+   
   )
 }
 
