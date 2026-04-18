@@ -1,21 +1,61 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addStudents } from "../Redux/Feature/AddstudentSlice";
+
+
 
 
 const AddStudents = () => {
+
+  const dispatch = useDispatch();
+  const [Studentdata, setStudent] = useState({
+    FirstName: '',
+    lastName: '',
+    dob: '',
+    Gender: '',
+    contact: '',
+    CINC: '',
+    email:'',
+    religion:'',
+    coursename:'',
+    campus:'',
+    Current_Address:'',
+    postal:'',
+
+
+
+  })
+
+  const onhandlestudentdata = (evt, propertyname)=>{
+    setStudent( (pervstate)=>( {...pervstate, [propertyname] : evt.target.value }))
+  }
+
+  const foamsumbit = (evt) => {
+    evt.preventDefault();
+    dispatch(addStudents(Studentdata))
+  }
+
   return (
     <div className='borde2 m-4 bg-[#f8f8f8] rounded' >
+
       <h1 className="text-xl uppercase font-medium py-6 px-4">Admission Foam</h1>
-      <form action="" className="grid grid-cols-4 gap-4 px-4">
+
+      <form action="" className="grid grid-cols-4 gap-4 px-4" onClick={foamsumbit}>
+
         <div className="" >
           <label htmlFor="" className="font-semibold">First Name</label>
-          <input required  className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input onChange={(evt) => {onhandlestudentdata(evt,'FirstName')}}
+           required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Last Name</label>
-          <input required className="bg-white p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
+          <input
+           onChange={(evt) => {onhandlestudentdata(evt,'lastName')}} required className="bg-white p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Date of Birth</label>
-          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="date" />
+          <input  onChange={(evt) => {onhandlestudentdata(evt,'dob')}}
+           required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="date" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Gender</label>
@@ -63,18 +103,18 @@ const AddStudents = () => {
 
         <div className="" >
           <label htmlFor="" className="font-semibold">Current Address:</label>
-          <input required  className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="house.no-7" type="text" />
+          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="house.no-7" type="text" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Postal Code:</label>
           <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="71000" type="number" />
         </div>
 
-      <button  className="active:scale-95 transition-all hover:bg-blue-600   text-white text-lg w-1/3 my-3 py-2 rounded bg-blue-500">Sumbit</button>
+        <button className="active:scale-95 transition-all hover:bg-blue-600   text-white text-lg w-1/3 my-3 py-2 rounded bg-blue-500">Sumbit</button>
       </form>
 
     </div>
-   
+
   )
 }
 
