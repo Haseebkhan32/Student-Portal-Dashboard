@@ -1,14 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addteacher } from '../Redux/Feature/Addteacher';
+
+
 
 const TeacherFoam = () => {
+  const [teacherData, setTeacher] = useState({
+    FirstName: '',
+  });
+
+  const onHandleInput = (e, propertyName) => {
+    setTeacher((pervstate) => ({ ...pervstate, [propertyName]: e.target.value }))
+  }
+
+  const dispatch = useDispatch();
+
+  const onSubmithandle = (evt) => {
+    evt.preventDefault()
+    dispatch(addteacher(teacherData));
+  }
+
+
+  const reduxTeacherData = useSelector((state) => state.addteacherReducer );
+  // console.log(reduxTeacherData);
+  
   return (
     <div className='borde2 m-4 bg-[#f8f8f8] rounded' >
       <h1 className="text-xl uppercase font-medium pt-6 p-1 px-4">Add New Teacher</h1>
       <p className="px-4 text-[17px] mb-7">Please fill in the details below to register a new staff member.</p>
-      <form action="" className="grid grid-cols-4 gap-4 px-4">
+      <form onSubmit={onSubmithandle}
+        action="" className="grid grid-cols-4 gap-4 px-4">
         <div className="" >
           <label htmlFor="" className="font-semibold">First Name</label>
-          <input required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Name" type="text" />
+          <input onChange={(e) => {
+            onHandleInput(e, 'FirstName')
+
+          }}
+            required className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Name" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Last Name</label>
@@ -32,7 +60,7 @@ const TeacherFoam = () => {
           <label className="font-semibold">Select/Course</label>
 
           <select className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1">
-            
+
             <option value="web">Web Development</option>
             <option value="app">App Development</option>
             <option value="graphic">Graphic Design</option>
