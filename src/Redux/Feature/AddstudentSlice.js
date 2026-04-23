@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AddStudents } from "../../Pages";
 
-const initialState = JSON.parse(localStorage.getItem('studentsData')) || [];
+const initialState =  { 
+   students: [],
+   editData: null
+};
 
 const AddstudentSlice = createSlice({
     name: "Addstudent",
@@ -9,12 +12,25 @@ const AddstudentSlice = createSlice({
     reducers: {
 
         addStudents: (state, action) => {
-            state.push(action.payload)
-            localStorage.setItem( 'studentsData' , JSON.stringify(state ))
+            state.students.push(action.payload)
         },
+        deleteStudent: (state, action) => {
+            state.students =  state.students.filter( (item , index )=> index !== action.payload )
+            
+        },
+        setEditData: (state,action)=>{
+            state.editData = action.payload;
+
+        },
+        updateStudent: (state, action )=>{
+            state.students = state.students.map( (item)=>
+                item.id === action.payload.id ? action.payload : item
+            )
+
+        }
 
     }
 })
 
-export const { addStudents } = AddstudentSlice.actions;
+export const { addStudents, deleteStudent,setEditData,updateStudent } = AddstudentSlice.actions;
 export default AddstudentSlice.reducer

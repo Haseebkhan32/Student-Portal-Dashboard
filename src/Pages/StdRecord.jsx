@@ -1,17 +1,31 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
 import { Pencil, Trash } from 'lucide-react';
+import { deleteStudent, setEditData } from '../Redux/Feature/AddstudentSlice';
+import { useNavigate } from 'react-router-dom';
+
+
+
 const StdRecord = () => {
 
-  const reduxStdData = useSelector((state) => (state.studentReducer));
+  const reduxStdData = useSelector((state) => (state.studentReducer.students));
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
 
-  const StdDelete = (evt)=> {
-        
+
+
+
+  const StdDelete = (index) => {
+    dispatch(deleteStudent(index))
 
   }
 
+  const handleEdit  = (item)=>{
+    dispatch(setEditData(item))
+    navigate("/addStudent")
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -31,7 +45,7 @@ const StdRecord = () => {
 
         {reduxStdData.map((stdData, index) => (
           <tbody key={index} className=''>
-            <tr className='border-2 border-blue-950'>
+            <tr  className='border-2 border-blue-950'>
               <th>{index + 1}</th>
               <td>{stdData.FirstName}</td>
               <td>{stdData.email}</td>
@@ -42,15 +56,15 @@ const StdRecord = () => {
               <td>
                 <div className="flex gap-2">
 
-                  <button
-                   className="p-2 rounded-lg bg-blue-500 text-white shadow-sm 
+                  <button onClick={ ()=> {handleEdit(stdData)}}
+                    className="p-2 rounded-lg bg-blue-500 text-white shadow-sm 
   hover:bg-blue-600 hover:scale-110 hover:shadow-md 
   active:scale-95 transition duration-200">
                     <Pencil size={16} />
                   </button>
 
-                  <button id={index} onClick={StdDelete}
-                  className="p-2 rounded-lg bg-red-500 text-white shadow-sm 
+                  <button onClick={ ()=> StdDelete(index)}
+                    className="p-2 rounded-lg bg-red-500 text-white shadow-sm 
   hover:bg-red-600 hover:scale-110 hover:shadow-md 
   active:scale-95 transition duration-200">
                     <Trash size={16} />

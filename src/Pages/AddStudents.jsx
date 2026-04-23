@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addStudents } from "../Redux/Feature/AddstudentSlice";
+import { addStudents, updateStudent } from "../Redux/Feature/AddstudentSlice";
 
 
 
 
 const AddStudents = () => {
 
-
-  // const addReduxData = useSelector((state) => state.studentReducer);
-
   const dispatch = useDispatch();
+
+  const { editData } = useSelector(state => state.studentReducer);
+
+  useEffect(() => {
+    if (editData) {
+      setStudent(editData);
+    }
+  }, [editData]);
+
   const [Studentdata, setStudent] = useState({
     FirstName: '',
     lastName: '',
@@ -35,7 +41,14 @@ const AddStudents = () => {
 
   const foamsumbit = (evt) => {
     evt.preventDefault();
-    dispatch(addStudents(Studentdata))
+    if (editData) {
+      dispatch(updateStudent(Studentdata));
+    } else {
+      dispatch(addStudents({
+        ...Studentdata,
+        id: Date.now()
+      }))
+    }
   }
 
   return (
@@ -47,52 +60,52 @@ const AddStudents = () => {
 
         <div className="" >
           <label htmlFor="" className="font-semibold">First Name</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'FirstName') }}
+          <input value={Studentdata.FirstName} onChange={(evt) => { onhandlestudentdata(evt, 'FirstName') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Last Name</label>
-          <input
+          <input value={Studentdata.lastName}
             onChange={(evt) => { onhandlestudentdata(evt, 'lastName') }} className="bg-white p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="text" />
         </div>
         <div>
           <label htmlFor="" className="font-semibold">Date of Birth</label>
-          <input
-            //  onChange={(evt) => {onhandlestudentdata(evt,'dob')}}
+          <input value={Studentdata.dob}
+            onChange={(evt) => { onhandlestudentdata(evt, 'dob') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="" type="date" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Gender</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'Gender') }}
+          <input value={Studentdata.Gender} onChange={(evt) => { onhandlestudentdata(evt, 'Gender') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Male/Female" type="text" />
         </div>
         <div>
           <label htmlFor="phone" className="font-semibold"  >Contact No:</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'contact') }}
+          <input value={Studentdata.contact} onChange={(evt) => { onhandlestudentdata(evt, 'contact') }}
 
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="+92-" type="tel" id="phone" name="phone" />
         </div>
 
         <div className="" >
           <label htmlFor="" className="font-semibold">CINC No:</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'CINC') }}
+          <input value={Studentdata.CINC} onChange={(evt) => { onhandlestudentdata(evt, 'CINC') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="41303-1586080-9" type="number" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Email Address:</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'email') }}
+          <input value={Studentdata.email} onChange={(evt) => { onhandlestudentdata(evt, 'email') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Enter your email" type="email" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Religion</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'religion') }}
+          <input value={Studentdata.religion} onChange={(evt) => { onhandlestudentdata(evt, 'religion') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="Islam" type="text" />
         </div>
 
         <div>
           <label className="font-semibold">Course Name:</label>
 
-          <select
+          <select value={Studentdata.coursename}
             onChange={(evt) => { onhandlestudentdata(evt, 'coursename') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1">
             <option
@@ -106,7 +119,7 @@ const AddStudents = () => {
         <div>
           <label className="font-semibold">Campus/Branch</label>
 
-          <select
+          <select value={Studentdata.campus}
             onChange={(evt) => { onhandlestudentdata(evt, 'campus') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1">
             <option
@@ -119,16 +132,18 @@ const AddStudents = () => {
 
         <div className="" >
           <label htmlFor="" className="font-semibold">Current Address:</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'Current_Address') }}
+          <input value={Studentdata.Current_Address} onChange={(evt) => { onhandlestudentdata(evt, 'Current_Address') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="house.no-7" type="text" />
         </div>
         <div className="" >
           <label htmlFor="" className="font-semibold">Postal Code:</label>
-          <input onChange={(evt) => { onhandlestudentdata(evt, 'postal') }}
+          <input value={Studentdata.postal} onChange={(evt) => { onhandlestudentdata(evt, 'postal') }}
             className="p-2 rounded outline-none border-2 border-gray-300 w-full my-1" placeholder="71000" type="number" />
         </div>
 
-        <button className="active:scale-95 transition-all hover:bg-blue-600   text-white text-lg w-1/3 my-3 py-2 rounded bg-blue-500">Sumbit</button>
+        <button className="active:scale-95 transition-all hover:bg-blue-600 text-white text-lg w-1/3 my-3 py-2 rounded bg-blue-500">
+          {editData ? "Update" : "Submit"}
+        </button>
       </form>
 
     </div>
